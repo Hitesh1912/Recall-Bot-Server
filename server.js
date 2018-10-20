@@ -15,12 +15,16 @@ app.use(express.static('public'));
 //     res.render('index');
 // });
 
-var p =1
+var p =1;
 var cron = require('node-cron');
 
-// cron.schedule('1 * * * * *', () => {
-//     console.log('running a task every minute',p++);
-// });
+cron.schedule('* * 2 * * *', () => {
+    console.log('running a task every 2 hrs');
+});
+
+cron.schedule('* * * 1 * *', () => {
+    console.log('running a task every 24 hrs');
+});
 
 // require mongoose
 

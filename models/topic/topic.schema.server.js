@@ -14,7 +14,7 @@ var topicSchema = mongoose.Schema({
     }],
     strength: Number,
     priority: {type: String, enum: ['0', '1']},
-    threshold:Number
+    threshold:{type:Number,default:80}
 }, {collection: 'topic', timestamps: true, autoIndex: true});
 
 module.exports = topicSchema;
