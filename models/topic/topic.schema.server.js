@@ -13,7 +13,8 @@ var topicSchema = mongoose.Schema({
         score: Number
     }],
     strength: Number,
-    priority: {type: String, enum: ['0', '1']}
+    priority: {type: String, enum: ['0', '1']},
+    threshold:Number
 }, {collection: 'topic', timestamps: true, autoIndex: true});
 
 module.exports = topicSchema;
