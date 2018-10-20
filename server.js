@@ -18,13 +18,16 @@ app.use(express.static('public'));
 var p =1;
 var cron = require('node-cron');
 
-cron.schedule('* * 2 * * *', () => {
-    console.log('running a task every 2 hrs');
-});
-
-cron.schedule('* * * 1 * *', () => {
-    console.log('running a task every 24 hrs');
-});
+// var reviewSchedular = cron.schedule('0 21 * * *', () => {
+//     console.log('Runing a job at 21:00 at America/Sao_Paulo timezone');
+// }, {
+//     scheduled: true,
+//     timezone: "America/Sao_Paulo"
+// });
+//
+// var criticalSchedular = cron.schedule('* * * 1 * *', () => {
+//     console.log('running a task every 24 hrs');
+// });
 
 // require mongoose
 

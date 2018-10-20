@@ -8,7 +8,8 @@ module.exports = {
     createTopic: createTopic,
     deleteTopic: deleteTopic,
     findTopicByName: findTopicByName,
-    updateTopic: updateTopic
+    updateTopic: updateTopic,
+    findAllTopics:findAllTopics
 };
 
 /**
@@ -30,6 +31,18 @@ function findTopic(topicId) {
  */
 function findTopicByName(topicName) {
     return topicModel.findOne({name: topicName}).catch(error => error);
+
+}
+
+
+/**
+ * find all topics
+ *
+ * @param Topic
+ * @returns {Promise}
+ */
+function findAllTopics(topicName) {
+    return topicModel.find().catch(error => error);
 
 }
 

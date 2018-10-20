@@ -6,6 +6,7 @@ module.exports = function (app) {
     // configure end points.
     app.post('/api', createTopic);
     app.get('/api/:topicId', findTopic);
+    app.get('/api', findAllTopics);
     app.get('/api/name/:topicName', findTopicByName);
     app.delete('/api/:topicId', deleteTopic);
     app.put('/api/:topicId', updateTopic);
@@ -22,6 +23,7 @@ module.exports = function (app) {
 
         var topic = req.body;
         topic.name = topic.name.toString().toLowerCase();
+        //topic['reviews'] =  [{dateOfReview:new Date(),score:}]
         console.log(JSON.stringify(topic));
         topicModel.createTopic(topic).then(
             function (response, error) {
@@ -45,6 +47,25 @@ module.exports = function (app) {
     function findTopic(req, res) {
         var topicId = req.params['topicId'];
         topicModel.findTopic(topicId).then(
+            function (response, error) {
+                if (response) {
+                    res.status(200).json(response);
+                }
+                else {
+                    res.status(500).send(error);
+                }
+            }
+        );
+    }
+
+    /**
+     * find all topics
+     *
+     * @param req
+     * @param res
+     */
+    function findAllTopics(req, res) {
+        topicModel.findAllTopics().then(
             function (response, error) {
                 if (response) {
                     res.status(200).json(response);
