@@ -17,9 +17,11 @@ https://github.com/rastogi-s/Recall-Bot-Serve
 
 ## Visualizations and Analytics
 
+https://github.com/karantyagi/iRecall-HackHarvard18
 
 ## Google Assistant Integration - Dialog Flow
 
+https://github.com/shiredude95/hackharvard18
  
 ---
 
