@@ -11,8 +11,9 @@ module.exports = function (app) {
     app.get('/api/name/:topicName', findTopicByName);
     app.delete('/api/:topicId', deleteTopic);
     app.put('/api/:topicId', updateTopic);
+    app.put('/api/revise/:topicId', updateReviewScore);
 
-    //app.patch('/api/:topicId', updateTopic);
+    //app.patch('/api/:topicId', updupdateReviewScoreateTopic);
 
     /**
      * creates a topic
@@ -141,7 +142,7 @@ module.exports = function (app) {
 
 
     /**
-     * Deletes the topic.
+     * find revisable the topics.
      *
      * @param req
      * @param res
@@ -154,6 +155,45 @@ module.exports = function (app) {
             }
             else {
                 res.status(500).send('Error');
+            }
+        });
+    }
+
+    /**
+     * Review the updated stopic.
+     *
+     * @param req
+     * @param res
+     */
+    function updateReviewScore(req, res) {
+        var topicId = req.params['topicId'];
+        var reviewDataScore = req.body['score'];
+        topicModel.findTopic(topicId).then(
+            function (response, error) {
+                if (response) {
+                    return response;
+                }
+                else {
+                    res.status(500).send(error);
+                    return null;
+                }
+            }
+        ).then(response => {
+            if (response) {
+                console.log(response);
+                response.reviews.push({
+                    score: reviewDataScore,
+                    dateOfReview: new Date()
+                });
+                topicModel.updateTopic(response).then((r, err) => {
+                    if (response) {
+                        res.status(200).json(r);
+                    }
+                    else {
+                        res.status(500).send(err);
+                    }
+                });
+
             }
         });
     }

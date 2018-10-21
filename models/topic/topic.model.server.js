@@ -76,5 +76,5 @@ function deleteTopic(topicId) {
  * @returns {Promise}
  */
 function updateTopic(topic) {
-    return topicModel.set(topic).catch(error => error);
+    return topicModel.update({_id:topic._id},topic).catch(error => error);
 }
