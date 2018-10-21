@@ -1,12 +1,13 @@
 module.exports = function (app) {
 
     var topicModel = require('../models/topic/topic.model.server');
-
+    var schedulerService = require('./scheduler.service.server');
 
     // configure end points.
     app.post('/api', createTopic);
-    app.get('/api/:topicId', findTopic);
+    app.get('/api/topic/:topicId', findTopic);
     app.get('/api', findAllTopics);
+    app.get('/api/revise', findReviseTopics);
     app.get('/api/name/:topicName', findTopicByName);
     app.delete('/api/:topicId', deleteTopic);
     app.put('/api/:topicId', updateTopic);
@@ -138,4 +139,22 @@ module.exports = function (app) {
         );
     }
 
+
+    /**
+     * Deletes the topic.
+     *
+     * @param req
+     * @param res
+     */
+    function findReviseTopics(req, res) {
+
+        schedulerService.fetchAllData().then((data) => {
+            if (data) {
+                res.status(200).json(data);
+            }
+            else {
+                res.status(500).send('Error');
+            }
+        });
+    }
 };
