@@ -13,7 +13,6 @@ module.exports = function (app) {
 
     //app.patch('/api/:topicId', updateTopic);
 
-
     /**
      * creates a topic
      * @param req
@@ -24,11 +23,11 @@ module.exports = function (app) {
         var topic = req.body;
         topic.name = topic.name.toString().toLowerCase();
         //topic['reviews'] =  [{dateOfReview:new Date(),score:}]
-        console.log(JSON.stringify(topic));
+        //console.log(JSON.stringify(topic));
         topicModel.createTopic(topic).then(
             function (response, error) {
                 if (response) {
-                    console.log(JSON.stringify(response));
+                    //console.log(JSON.stringify(response));
                     res.status(200).json(response);
                 }
                 else {

@@ -41,7 +41,7 @@ function findTopicByName(topicName) {
  * @param Topic
  * @returns {Promise}
  */
-function findAllTopics(topicName) {
+function findAllTopics() {
     return topicModel.find().catch(error => error);
 
 }
