@@ -159,6 +159,9 @@ module.exports = function (app) {
         });
     }
 
+
+    var STRENGTH_VALS = [12, 22, 72, 182];
+
     /**
      * Review the updated stopic.
      *
@@ -185,6 +188,12 @@ module.exports = function (app) {
                     score: reviewDataScore,
                     dateOfReview: new Date()
                 });
+                if (reviewDataScore == 1) {
+                    let currVal = response.strength;
+                    let index = STRENGTH_VALS.findIndex((val) => val == currVal);
+                    if (index < STRENGTH_VALS - 1)
+                        response.strength = STRENGTH_VALS[index + 1]
+                }
                 topicModel.updateTopic(response).then((r, err) => {
                     if (response) {
                         res.status(200).json(r);
