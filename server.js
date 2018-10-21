@@ -41,14 +41,14 @@ var reviewSchedular = cron.schedule('*/2 * * * *', () => {
     }
 });
 
-//
+
 // var criticalSchedular = cron.schedule('*/20 * * * * *', () => {
 //     console.log('Runing a critical job ', counter);
 //
 // });
 
 if (counter < 1) {
-    // criticalSchedular.start();
+    //criticalSchedular.start();
     reviewSchedular.start();
 }
 

@@ -190,9 +190,11 @@ module.exports = function (app) {
                 });
                 if (reviewDataScore == 1) {
                     let currVal = response.strength;
-                    let index = STRENGTH_VALS.findIndex((val) => val == currVal);
-                    if (index < STRENGTH_VALS - 1)
-                        response.strength = STRENGTH_VALS[index + 1]
+                    var i = STRENGTH_VALS.findIndex((val) => val == currVal);
+                    console.log(currVal);
+                    console.log(i);
+                    if (i < STRENGTH_VALS - 1)
+                        response.strength = STRENGTH_VALS[i + 1]
                 }
                 topicModel.updateTopic(response).then((r, err) => {
                     if (response) {
