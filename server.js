@@ -25,12 +25,13 @@ var cron = require('node-cron');
 // reviewSchedular.start();
 
 var schedulerService = require('./services/scheduler.service.server');
-var eventGenerartorService =  require('./services/event-creator.service.server');
+var eventGenerartorService = require('./services/event-creator.service.server');
 
 var reviewSchedular = cron.schedule('*/2 * * * *', () => {
     console.log('Runing a review job ', counter);
     schedulerService.fetchAllData().then((data) => {
-        eventGenerartorService.generateEvent(data);
+        if (data != undefined && data.length > 0)
+            eventGenerartorService.generateEvent(data);
         //console.log(data);
     });
     counter++;
@@ -47,7 +48,7 @@ var reviewSchedular = cron.schedule('*/2 * * * *', () => {
 // });
 
 if (counter < 1) {
-   // criticalSchedular.start();
+    // criticalSchedular.start();
     reviewSchedular.start();
 }
 
